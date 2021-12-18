@@ -63,32 +63,32 @@ export class HomepageComponent implements OnInit {
 
   submit() {
     if(this.formSearch.valid) {
+
       const request = `${this.formSearch.value.searchCity}&lang=${this.formSearch.value.language}&units=${this.formSearch.value.temp}`;
+      let objLastSearch: CitySearch;
+      let arrayTmp : CitySearch[]= this.weatherService.collectionHistorySearch$.value;
+
       this.weatherService.getWeather(request).pipe(
         tap(city => {
           if(city != null) {
-                  objLastSearch = {
-                    coord: {
-                      lat: city.coord.lat,
-                      lon: city.coord.lon
-                    },
-                    country: city.sys.country,
-                    id: city.id,
-                    name: city.name,
-                    request: request,
-                    state: city.state
-                  }
+            objLastSearch = {
+              coord: {
+                lat: city.coord.lat,
+                lon: city.coord.lon
+              },
+              country: city.sys.country,
+              id: city.id,
+              name: city.name,
+              request: request,
+              state: city.state
+            }
 
-                  arrayTmp.push(objLastSearch)
-                  this.weatherService.historySearch = arrayTmp;
-                }
+            arrayTmp.push(objLastSearch)
+            this.weatherService.historySearch = arrayTmp;
+            this.router.navigate(['/result'])
+          }
         })
       ).subscribe();
-      let objLastSearch: CitySearch;
-      let arrayTmp : CitySearch[]= this.weatherService.collectionHistorySearch$.value;
-      this.router.navigate(['/result'])
     }
   }
-
-
 }
