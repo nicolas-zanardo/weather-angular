@@ -1,0 +1,13 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.ml-1 { margin-left: 0.3rem}
+.mr-1 { margin-right: 0.3rem}
+.mt-1 { margin-top: 0.5rem}
+.mx-1 {margin-left: 0.5rem; margin-right: 0.5rem}
+.w-100 {width: 100%}
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+}

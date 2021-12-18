@@ -1,0 +1,41 @@
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
+
+    <!-- Country Column -->
+    <ng-container matColumnDef="country">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by country"> flag </th>
+      <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Name </th>
+      <td mat-cell *matCellDef="let element">
+        <div><strong>{{element.name}}</strong> | <small>long:{{element.coord.lon}} - lat:{{element.coord.lat}}</small></div>
+        <div fxLayoutAlign="space-between center">
+          <div>Command :</div>
+          <div fxLayoutAlign="start center">
+            <button mat-mini-fab color="primary" class="btn-command" (click)="openDialog(element.request, element.id)">
+              <mat-icon>visibility</mat-icon>
+            </button>
+            <button mat-mini-fab color="accent" class="btn-command" (click)="viewDetailWeather(element.request)">
+              <mat-icon>travel_explore</mat-icon>
+            </button>
+            <button mat-mini-fab color="warn" class="btn-command" (click)="deleteItemWeather(element.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </div>
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[4, 8, 16]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>

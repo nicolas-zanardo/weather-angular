@@ -1,0 +1,29 @@
+.search-page {
+  margin: 0 1rem;
+  mat-card {
+    background-color: rgba(245, 245, 245, 0.34);
+    min-width: 150px;
+    max-width: 800px;
+    width: 100%;
+    .head-form {
+      flex-wrap: wrap;
+    }
+    .form-search {
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      .full-width {
+        width: 100%;
+      }
+    }
+  }
+
+  .search-history {
+    margin-top: 3rem;
+    width: 100%;
+  }
+}
+
+[dir='rtl'] .example-option-img {
+  margin-right: 0;
+  margin-left: 8px;
+}
