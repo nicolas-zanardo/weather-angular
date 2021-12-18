@@ -24,26 +24,21 @@
           <mat-label fxLayoutAlign="start center"> <mat-icon>apartment</mat-icon> <span class="ml-1">City</span></mat-label>
           <input matInput
                  formControlName="searchCity"
-                 aria-label="State"
-                 [matAutocomplete]="auto"
-                 [formControl]="cityCtrl">
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let city of filteredCities | async" [value]="city.name">
-              <strong>{{city.country}}</strong> -
-              <span>{{city.name}}</span> |
-              <small>lon: {{city.coord?.lon}} - lat: {{city.coord?.lat}}</small>
-            </mat-option>
-          </mat-autocomplete>
+                 aria-label="State">
+            <mat-error *ngIf="formSearch.get('searchCity')!.hasError('required')">
+              Please enter a city
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label fxLayoutAlign="start center"><mat-icon>public</mat-icon> <span class="ml-1">Unit of Temperature</span></mat-label>
-          <mat-select formControlName="temp" [compareWith]="compareUnits" >
+          <mat-select formControlName="temp" [compareWith]="compareUnits">
             <mat-option *ngFor="let unit of units" [value]="unit.value">
               {{unit.viewValue}}
             </mat-option>
           </mat-select>
         </mat-form-field>
+
       </div>
 
 
